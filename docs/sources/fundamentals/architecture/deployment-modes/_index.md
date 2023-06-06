@@ -69,8 +69,15 @@ There are advantages to separating the read and write paths:
 
 The simple scalable deployment mode requires a load balancer in front of Loki,
 which directs `/loki/api/v1/push` traffic to the write nodes.
+
 All other requests go to the read nodes.
 Traffic should be sent in a round robin fashion.
+
+If you are using triple mode - these paths should be sent to the backend:
+`/loki/api/v1/rules 
+/api/prom/rules 
+/prometheus/api/v1/rules 
+/prometheus/api/v1/alerts`
 
 The simple scalable deployment of Loki can scale to
 several TBs of logs per day and more.
